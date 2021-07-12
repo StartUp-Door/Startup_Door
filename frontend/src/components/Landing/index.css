@@ -1,13 +1,13 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
 
-body{
+/* body{
   margin:0px;
   padding: 0px;
   
   background-color:#08c4b3;
   font-family: 'Montserrat', sans-serif;
-}
+} */
 
 *{
   box-sizing: border-box;
@@ -28,7 +28,7 @@ input{
   border: none;
 }
 .logo img{
-  width: 90px;
+  width: 540px;
 }
 
 /* nav{
@@ -82,14 +82,6 @@ nav .menu-btn,
   display:none;
 } */
 
-.hey{
-	
-font-family: calibri;
-color:#ffffff;
-font-weight: 500;
-font-size: 1.3rem;
-border-bottom: 2px solid #000266;
-}
 
 .name{
 font-family: 'Montserrat';
@@ -132,36 +124,37 @@ justify-content: center;
   box-shadow: 5px 10px 30px rgba(255, 2, 2, 0.137);
   border-radius: 10px;
 color:#000266;
+margin-left: 20px;
 }
 
 
 .cv-btn3{
-width:110px;
+width: 140px;
 height: 40px;
-display:flex;
+display: flex;
 justify-content: center;
-align-items: center;
-background-color: #d0ff00;
-box-shadow: 5px 10px 30px rgba(255, 2, 2, 0.137);
-border-radius: 15px;
-padding: 10px 0px 10px 0px;
+  align-items: center;
+  background-color: #d0ff00;
+  box-shadow: 5px 10px 30px rgba(255, 2, 2, 0.137);
+  border-radius: 10px;
 color:#000266;
+margin-left: 20px;
 }
 
 
-.cv-btn1{
+/* .cv-btn1{
   font-size: 14px;
 width: 140px;
 height: 40px;
 display: flex;
 justify-content: center;
   align-items: center;
-  background: transparent;
   border: 1px solid #ffffff;
   color:#ffffff;
   border-radius: 10px;
-  margin-left: 20px;
-}
+  
+} */
+
 .cv-btn:hover{
 background-color: #ffffff;
   transition: all ease 0.5s;
@@ -173,28 +166,6 @@ background-color: #ffffff;
   color: #000266;
 }
 
-.arrow{
-  align-self: end;
-  width: 50%;
-  height: 15%;
-  margin-bottom: 4em;
-  position: absolute;
-  bottom:0px;
-  border-right: 2px solid  #d0ff00;
-  animation: arrow-animation ease 1.5s;
-
-}
-.arrow::after{
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 11px 11px 0px 11px;
-  border-color: #d0ff00 transparent transparent transparent;
-  right: -0.7em;
-  bottom: -2px;
-}
 @keyframes arrow-animation{
   0%{
       bottom: 70px;
@@ -229,7 +200,7 @@ background-color: #ffffff;
 margin-top:140px ;
 width:100%;
 height: 80vh;
-background-color:#2A6B6C;
+background-color:#2a6b6c;
 box-sizing: border-box;
 display: flex;
 align-items: center;
@@ -265,7 +236,7 @@ height: 40px;
 border-radius: 10px;
 border: none;
   outline: none;
-  color: #000266;
+  color: #8585a1;
 background-color:#d0ff00;
 }
 

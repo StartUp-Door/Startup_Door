@@ -24,16 +24,16 @@ input{
     border: none;
 }
 .logo img{
-    width: 90px;
+    width: 130px;
 }
 
 #main{
     width:100%;
-    height:768px;
+    height:600px;
     position: relative;
     background-repeat: no-repeat;
     background-size: cover;
-background-image: url("images/Cus6.jpg");   
+background-image: url("images/Cus7.jpg");   
     z-index: 0;
 }
 
@@ -50,6 +50,7 @@ background-image: url("images/Cus6.jpg");
     height: 100%;
     z-index: -1;
 }
+
 nav{
 	display: flex;
 	justify-content: space-around;
@@ -62,6 +63,7 @@ nav{
     background-color: transparent;
     transition: 0.6s ease-in-out;
 }
+
 nav.active{
 	box-shadow: 5px 10px 30px rgba(0, 0, 0, 0.157);
 	background-color: #000000;
@@ -139,7 +141,7 @@ nav .menu-btn,
 	color:#ffffff;
 }
 */
-.header-btns{
+/* .header-btns{
     display: flex;
     margin-top: 40px;
     margin-left: 40%;
@@ -162,7 +164,7 @@ nav .menu-btn,
 	background-color: transparent;
     transition: all ease 0.5s;
     color: #ffffff;
-    border: 2px solid #FF1414;
+    border: 2px solid #ac5685;
 }
 
 /*Feature Box  */
@@ -172,16 +174,18 @@ nav .menu-btn,
     box-sizing: border-box;
     font-family:'Lato';
     display: flex;
+    color: #c5c5c5;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding-top: 40px ;
-    background-color: #000000;
+    font-size: large;
+    background-color: #2A6B6C;
     z-index: -100;
-}
+} */
 
 #feature h1{
-    color: #fff;
+    color: rgb(240, 219, 219);
     font-size: 2.5rem;
 }
 .a-container{
@@ -192,7 +196,7 @@ nav .menu-btn,
 
 }
 .a-box{
-    background-color: #000000;
+    background-color: #c9dbeb;
     width:250px;
     height: 400px;
     margin: 20px;
@@ -220,7 +224,7 @@ nav .menu-btn,
 .a-b-text{
     width: 100%;
     height: 40%;
-    background-color:#000000;
+    background-color:#435666;
     display:flex;
     justify-content: center;
     align-items: center;
@@ -405,7 +409,7 @@ nav .menu-btn,
 }
 #contact form input[type="submit"]{
     height: 45px;
-    background: linear-gradient(90deg, #2A6B6C 20%,#FFCD00);
+    background: #2A6B6C;
     color: #ffffff;
     text-transform: uppercase;
 }
