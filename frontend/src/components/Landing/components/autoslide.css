@@ -32,3 +32,28 @@
   height: 100%;
   object-fit: cover;
 }
+
+@media(max-width:990px){
+	
+.swiper-container {
+  width: 40%;
+  height: 40%;
+  left: 20%;
+}
+}
+
+@media(max-width:850px){
+	
+.swiper-container {
+  width: 40%;
+  height: 40%;
+  left: 27%;
+}
+}
+
+@media(max-width:600px){
+	
+.swiper-container {
+  display: none;
+}
+}
