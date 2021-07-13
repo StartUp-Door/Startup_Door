@@ -182,7 +182,7 @@ nav .menu-btn,
     font-size: large;
     background-color: #2A6B6C;
     z-index: -100;
-} */
+} 
 
 #feature h1{
     color: rgb(240, 219, 219);
@@ -378,6 +378,7 @@ nav .menu-btn,
     align-items: center;
     flex-direction: column;
 	top: 100px;
+	background-color: #CBB3B3;
 }
 
 #contact h1{
@@ -400,7 +401,7 @@ nav .menu-btn,
     padding: 10px;
     border: none;
     outline: none;
-    background-color: #ffffff2d;
+    background-color: #11ccef;
     color: #ffffff;
     border-radius: 5px;
 }

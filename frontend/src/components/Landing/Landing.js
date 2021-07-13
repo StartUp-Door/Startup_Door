@@ -26,8 +26,7 @@ function App() {
      </div>
      <Autoslide />
      {/* <Slide />*/}
-     <Features/>
-     
+     <Features/>  
      <Services/>
      <About/>
      <Featurebox/>
