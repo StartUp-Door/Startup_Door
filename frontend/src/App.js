@@ -8,7 +8,7 @@ import Register from "./components/Authtication/Register";
 function App() {
   return (
     <Fragment>
-    {/*}  <Router>
+    {/*}  <Router> //
         <Switch>
           <Route path="/register" component={Register}  />
         </Switch>
