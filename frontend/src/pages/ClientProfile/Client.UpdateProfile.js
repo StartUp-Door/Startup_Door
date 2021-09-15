@@ -9,7 +9,7 @@ export default function Profile() {
     <div>
       <Navbar />
       <div className="homeContainer">
-        <Sidebar />
+        <div style={{marginTop: '20px', flex: 2.185}}><Sidebar /></div>
         <Feed/>
         {/* <Rightbar/> */}
       </div>
