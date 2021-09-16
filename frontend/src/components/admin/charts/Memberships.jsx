@@ -21,7 +21,7 @@ export default function App() {
             Memberships
           </Typography>
         <BarChart width={500} height={400} data={members}>
-            {/* <CartesianGrid strokeDasharray="2 3" /> */}
+            <CartesianGrid strokeDasharray="2 3" />
                 <XAxis dataKey="name"/>
                 <YAxis/>
                 <Bar dataKey="value" fill="#009ACD" />
