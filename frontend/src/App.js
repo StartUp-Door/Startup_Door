@@ -139,7 +139,7 @@ function App() {
           </Route>
 
           {/* Admin routes */}
-          <Route path = "/admin" exact >
+          <Route path = "/admin">
               <AdminHome />    
           </Route>  
           <Route path = "/stats" >
