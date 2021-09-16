@@ -1,7 +1,7 @@
 import React from 'react'
 
-import CreateService from '../components/servicetypes/CreateService';
-import ShowServices from '../components/servicetypes/ShowServices';
+import CreateService from '../../components/admin/servicetypes/CreateService';
+import ShowServices from '../../components/admin/servicetypes/ShowServices';
 
 function ServiceTypes() {
     return ( 

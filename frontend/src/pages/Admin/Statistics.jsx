@@ -1,9 +1,9 @@
 import React from 'react'
 import {makeStyles} from '@material-ui/styles';
 import { Typography } from '@material-ui/core';
-import Filters from '../components/analytics/Filters';
-import Memberships from '../components/analytics/Memberships'
-import UsersPie from '../components/analytics/UsersPie'
+import Filters from '../../components/admin/charts/Filters';
+import Memberships from '../../components/admin/charts/Memberships'
+import UsersPie from '../../components/admin/charts/UsersPie'
 
 const useStyles = makeStyles({
     wrapper : {

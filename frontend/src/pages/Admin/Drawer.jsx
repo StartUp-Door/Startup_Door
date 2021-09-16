@@ -23,7 +23,7 @@ import GroupIcon from '@material-ui/icons/Group';
 import ContactsIcon from '@material-ui/icons/Contacts';
 
 import { Home, Timeline, Message, Business, Settings, Build} from '@material-ui/icons'
-import logo from '../components/image/logo.png'
+import logo from '../../components/admin/image/logo.png'
 
 import AdminHome from './AdminHome'
 import {Link} from 'react-router-dom'
