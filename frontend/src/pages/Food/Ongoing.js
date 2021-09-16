@@ -9,7 +9,7 @@ export default function TechnicianDash() {
     <div>
       <Navbar />
       <div className="homeContainer">
-        <Sidebar />
+        <div style={{marginTop: 20, flex: 2.2}}><Sidebar /></div>
         <Ongoing />
         {/* <Rightbar/> */}
       </div>
