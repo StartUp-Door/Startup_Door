@@ -1,10 +1,10 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core/styles'
-import Infocard from '../components/infocard/Infocard';
+import Infocard from '../../components/admin/infocard/Infocard';
 // import SalesAnalytics from '../components/charts/SalesAnalytics';
-import UsersBar from '../components/analytics/UsersPie'
+import UsersPie from '../../components/admin/charts/UsersPie'
 // import BarChart from '../components/analytics/Barchart'
-import Memberships from '../components/analytics/Memberships'
+import Memberships from '../../components/admin/charts/Memberships'
 
 const useStyles = makeStyles(({
     root: { 
@@ -28,7 +28,7 @@ function AdminHome() {
             <Infocard />
             {/* <SalesAnalytics /> */}
             <div className={classes.charts}>
-                <UsersBar />
+                <UsersPie />
                 {/* <BarChart/> */}
                 <Memberships />
             </div>
