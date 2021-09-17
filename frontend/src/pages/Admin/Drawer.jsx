@@ -25,7 +25,6 @@ import ContactsIcon from '@material-ui/icons/Contacts';
 import { Home, Timeline, Message, Business, Settings, Build} from '@material-ui/icons'
 import logo from '../../components/admin/image/logo.png'
 
-import AdminHome from './AdminHome'
 import {Link} from 'react-router-dom'
 import Popover from '@material-ui/core/Popover';
 
@@ -237,8 +236,8 @@ export default function PersistentDrawerLeft() {
         </div>
         <Divider />
         <List>
-          <Link to="/" className={classes.linkText}>
-            <ListItem button onClick={<AdminHome/>}>
+          <Link to="/admin" className={classes.linkText}>
+            <ListItem button>
                 <ListItemIcon><Home/></ListItemIcon>
                 <ListItemText primary="Dashboard" />
             </ListItem>
