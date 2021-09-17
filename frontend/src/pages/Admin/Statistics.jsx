@@ -32,8 +32,6 @@ function Statistics() {
                 <div className={classes.chartRow}>
                     <Memberships/> 
                     <UsersPie/>
-                </div>
-                <div classeName={classes.chartRow}>
                     <AllRatingsBar />
                 </div>
             </div>
