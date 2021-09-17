@@ -104,3 +104,16 @@ exports.routeServiceProvider = async (req, res) => {
       
     
   };
+
+  exports.serviceprovider = async (req, res) => {
+    const cid = parseInt(req.params.id);
+      
+    const response = await pool.query(
+      "SELECT title FROM membership WHERE cid=$1",
+      [cid]
+    );
+    res.status(200).send(response.rows);
+      
+    
+  };
+  
