@@ -6,3 +6,9 @@ router.post('/register',Controller.Register);
 router.post('/login',Controller.Login);
 
 router.get('/confirm/:id',Controller.Confirm);
+
+router.post('/forgotpassword',Controller.Forgotpassword)
+
+router.post('/reset',Controller.Reset);
+
+module.exports = router;
