@@ -119,3 +119,25 @@ exports.Reset = async (req, res) => {
     
   };
 
+exports.Confirm = async (req, res) => {
+    const token = req.params.id;
+  //  console.log(token);
+    let A = '0'
+    const user = await pool.query("UPDATE users SET status=1 where token=$1",[token]);
+   
+    const userid = await pool.query("SELECT * FROM users WHERE token=$1",[token]);
+    
+    let datetime = new Date()
+    var u = await pool.query("SELECT cid FROM client ORDER BY cid DESC");
+    var ui = u.rows[0].cid+1
+ //  console.log(userid.rows[0].user_id)
+   console.log(ui)
+    const newClient = await pool.query(
+       "INSERT INTO client(cid, cname, cemail, cnic, cgender, caddress, cno, created_at, user_id) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9)",
+      [ui,userid.rows[0].username,userid.rows[0].email,A,A,A,A,datetime,userid.rows[0].user_id]   
+      );
+
+    return res.redirect('http://localhost:3000/login')
+
+    
+  };
