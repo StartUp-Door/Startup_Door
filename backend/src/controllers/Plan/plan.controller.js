@@ -73,3 +73,34 @@ exports.addPayment = async (req, res) => {
     )
      // .catch(err => console.log(err)) 
   };
+
+exports.routeServiceProvider = async (req, res) => {
+    const cid = parseInt(req.params.id);
+      
+    let data = new Date();
+    const ldata = await pool.query(
+        "SELECT mtime FROM membership WHERE cid=$1",
+        [cid]
+      );
+      
+      if(ldata.rows.length !==0){
+        timeDifference = Math.abs(data.getTime() - ldata.rows[0].mtime.getTime());
+        // console.log(timeDifference)
+         let differentDays = Math.ceil(timeDifference / (1000 * 3600 * 24));
+   
+          if(differentDays > 0){ 
+           const response = await pool.query(
+               "SELECT category FROM membership WHERE cid=$1",
+               [cid]
+             );
+             res.status(200).send(response.rows);
+          }else{
+         return    res.status(200).send("Need to pay monthy payment");
+          }
+      }else{
+        res.status(200).send("First need to update Membership "); 
+      }
+
+      
+    
+  };
