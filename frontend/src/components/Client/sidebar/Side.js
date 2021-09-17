@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import TreeView from '@material-ui/lab/TreeView';
@@ -121,7 +121,35 @@ const useStyles = makeStyles({
 
 export default function GmailTreeView() { 
   const classes = useStyles();
+ const [tech,setTech] = useState('')
+  const [plant,setPlant] = useState('')
+  const [food,setFood] = useState('')
+  const id1 = localStorage.cid
+  useEffect(()=>{
+    fetch(`http://localhost:4000/plan/route/${id1}`)
+    .then(res => {
+      return res.json();
+    })
+    .then(data => {
+    //  {technician,plant,0}
+       if(data[0].category[0] === 'technician'){
+        setTech(`/${data[0].category[0]}`)
+       }else{
+         setTech('/test')
+       }
+       if(data[0].category[1] === 'plant'){
+        setPlant(`/${data[0].category[1]}`)
+       }else{
+         setPlant('/test')
+       }
 
+       if(data[0].category[2] === 'food'){
+        setFood(`/${data[0].category[2]}`)
+       }else{
+        setFood('/test')
+       }      
+    })
+  },[])
   return (
     <TreeView
       className={classes.root}
