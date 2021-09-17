@@ -57,3 +57,39 @@ exports.Register = async (req, res) => {
        console.error(err.message);
    }
  };
+
+exports.Login = async (req, res) => {
+    try {
+        //1.req.body
+ 
+          const {username,password} = req.body;
+         // console.log(username)
+        //2. check if user doesn't exits (if not then we throw error)
+         const user = await pool.query("SELECT * FROM users where username = $1",[username]);
+            
+         if(user.rows.length === 0){
+             return res.status(401).json("Password or username is incorrect");
+         }
+        //3. check if Incomming password is same database password
+         const validPassword = await bcrypt.compare(password,user.rows[0].password);
+         
+          if(!validPassword){
+             return res.status(401).json("Password  is incorrect"); 
+          }
+          const active = user.rows[0].status;
+          if(active == 0){
+             return res.status(401).json("Conform your account"); 
+          }
+          const role = user.rows[0].role;
+          const user_id = user.rows[0].user_id;
+          const clientid = await pool.query("SELECT cid FROM client where user_id = $1",[user_id]);
+        //  const token = jwtGenerator(user.rows[0].id);
+          const cid  = clientid.rows[0].cid;
+          let datetime = new Date()
+          const last_login = await pool.query("UPDATE users SET last_login=$1 where user_id=$2",[datetime,user_id])
+          return res.status(200).send({role,cid});
+           console.log(user_id)
+     } catch (err) {
+         console.error(err.message);
+     }
+  };
