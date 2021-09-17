@@ -102,10 +102,10 @@ exports.updateTechJob = async (req, res) => {
   res.status(200).send({ message: "Tech Job Updated Successfully!" });
 };
 
-exports.ongoing = async (req, res) => {
+exports.ongoingID = async (req, res) => {
   const cid = parseInt(req.params.id);
   try {
-   const results = await db.query("select * from job_tech inner join technician on job_tech.tid= technician.tid where cid=$1 ORDER BY jobtech_id DESC", [cid]);
+   const results = await db.query("select * from job_tech inner join client on job_tech.service_client_id= client.cid where cid=$1 ORDER BY jobtech_id DESC", [cid]);
  
     res.status(200).json({
        status: "Success",
@@ -115,6 +115,23 @@ exports.ongoing = async (req, res) => {
      });
     } 
     catch (err) {
-      console.error(err.message);
+      console.error(err.message); 
+    }
+};
+
+exports.ongoing = async (req, res) => {
+  // const cid = parseInt(req.params.id);
+  try {
+   const results = await db.query("select * from job_tech inner join client on job_tech.service_client_id= client.cid where username='Tharaka Athukorala' ORDER BY jobtech_id DESC");
+ 
+    res.status(200).json({
+       status: "Success",
+       data: {
+           problems:results.rows,
+       },       
+     });
+    } 
+    catch (err) {
+      console.error(err.message); 
     }
 };
