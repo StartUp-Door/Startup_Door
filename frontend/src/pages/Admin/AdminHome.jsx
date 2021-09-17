@@ -5,12 +5,15 @@ import Infocard from '../../components/admin/infocard/Infocard';
 import UsersPie from '../../components/admin/charts/UsersPie'
 // import BarChart from '../components/analytics/Barchart'
 import Memberships from '../../components/admin/charts/Memberships'
+import Drawer from './Drawer'
 
 const useStyles = makeStyles(({
     root: { 
-        marginTop: 110,
-        marginLeft: 0, 
-        textAlign: "center" 
+        display: 'flex', 
+    },
+    content: {
+        display: 'block',
+        marginTop: 120
     },
     charts : {
         display: "flex", 
@@ -25,14 +28,16 @@ function AdminHome() {
     const classes = useStyles()
     return (
         <div className={classes.root} >
-            <Infocard />
-            {/* <SalesAnalytics /> */}
-            <div className={classes.charts}>
-                <UsersPie />
-                {/* <BarChart/> */}
-                <Memberships />
+            <Drawer />
+            <div className={classes.content}>
+                <Infocard />
+                {/* <SalesAnalytics /> */}
+                <div className={classes.charts}>
+                    <UsersPie />
+                    {/* <BarChart/> */}
+                    <Memberships />
+                </div>
             </div>
-            
         </div>
     )
 }
