@@ -7,13 +7,18 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Drawer from './Drawer'
 
 const useStyles = makeStyles({
-    tableWrapper: {
-        marginTop: 150,
-        marginRight : 50,
-    },
-    table: {
+  root: {
+    display: 'flex'
+  },
+  tableWrapper: {
+    display: 'block',
+    marginTop: 150,
+    marginRight : 50,
+  },
+  table: {
     minWidth: 650,
   },
 });
@@ -39,31 +44,34 @@ useEffect( () => {
 }, []);
 
   return (
-    <TableContainer className={classes.tableWrapper} component={Paper}>
-      <Table className={classes.table} aria-label="review ratings table">
-        <TableHead>
-          <TableRow>
-            <TableCell>ID</TableCell>
-            <TableCell align="center">Name of Provider</TableCell>
-            <TableCell align="center">Comment</TableCell>
-            <TableCell align="center">Value</TableCell>
-            <TableCell align="center">Client Name</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {ratings.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell component="th" scope="row">
-                {row.id}
-              </TableCell>
-              <TableCell align="center">{row.service_name}</TableCell>
-              <TableCell align="center">{row.comment}</TableCell>
-              <TableCell align="center">{row.value}</TableCell>
-              <TableCell align="center">{row.client_name}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <div className={classes.root}>
+      <Drawer />
+      <TableContainer className={classes.tableWrapper} component={Paper}>
+          <Table className={classes.table} aria-label="review ratings table">
+            <TableHead>
+              <TableRow>
+                <TableCell>ID</TableCell>
+                <TableCell align="center">Name of Provider</TableCell>
+                <TableCell align="center">Comment</TableCell>
+                <TableCell align="center">Value</TableCell>
+                <TableCell align="center">Client Name</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {ratings.map((row) => (
+                <TableRow key={row.id}>
+                  <TableCell component="th" scope="row">
+                    {row.id}
+                  </TableCell>
+                  <TableCell align="center">{row.service_name}</TableCell>
+                  <TableCell align="center">{row.comment}</TableCell>
+                  <TableCell align="center">{row.value}</TableCell>
+                  <TableCell align="center">{row.client_name}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+    </div>
   );
 }
