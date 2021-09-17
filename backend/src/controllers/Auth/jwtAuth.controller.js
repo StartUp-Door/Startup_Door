@@ -93,3 +93,29 @@ exports.Login = async (req, res) => {
          console.error(err.message);
      }
   };
+
+exports.Reset = async (req, res) => {
+    const {password,token} = req.body;
+  //  console.log(token)
+    const user = await pool.query("SELECT user_id from users where token=$1",[token]);
+    
+     
+    if(user.rows.length !== 0){
+        const  user_id =user.rows[0].user_id;
+        const salt = await bcrypt.genSalt(10);
+        const bcryptPassword = await bcrypt.hash(password,salt);
+        const update_passowrd = await pool.query("UPDATE users SET password=$1 where user_id=$2",[bcryptPassword,user_id]);
+        
+        if(update_passowrd.rows.length == 0){
+            return res.json('sucess');
+        }
+        
+         
+       
+      }else{
+            
+          return res.status(401).json("user exits")
+      }
+    
+  };
+
