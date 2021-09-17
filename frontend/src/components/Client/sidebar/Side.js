@@ -159,7 +159,7 @@ export default function GmailTreeView() {
       defaultEndIcon={<div style={{ width: 24 }} />}
     >
       <StyledTreeItem nodeId="1" labelText="Client function 1" labelIcon={WorkRoundedIcon}>
-      <Link to="/technician" style={{textDecoration:'none'}}><StyledTreeItem
+      <Link to={`${tech}`} style={{textDecoration:'none'}}><StyledTreeItem
           nodeId="7"
           labelText="Technician"
           labelIcon={SupervisorAccountIcon}
@@ -167,7 +167,7 @@ export default function GmailTreeView() {
           color="#1a73e8"
           bgColor="#e8f0fe"
         /> </Link>
-        <Link to="/food" style={{textDecoration:'none'}}><StyledTreeItem
+        <Link to={`${food}`} style={{textDecoration:'none'}}><StyledTreeItem
           nodeId="8"
           labelText="Food & Cuisine"
           labelIcon={FastfoodIcon}
@@ -175,7 +175,7 @@ export default function GmailTreeView() {
           color="#e3742f"
           bgColor="#fcefe3"
         /></Link>
-        <Link to="/plant" style={{textDecoration:'none'}}><StyledTreeItem
+        <Link  to={`${plant}`} style={{textDecoration:'none'}}><StyledTreeItem
           nodeId="9"
           labelText="Plants and Crops"
           labelIcon={NaturePeopleIcon}
