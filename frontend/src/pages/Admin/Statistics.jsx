@@ -5,6 +5,7 @@ import Filters from '../../components/admin/charts/Filters';
 import Memberships from '../../components/admin/charts/Memberships'
 import UsersPie from '../../components/admin/charts/UsersPie'
 import Drawer from './Drawer'
+import AllRatingsBar from '../../components/admin/charts/AllRatingsBar';
 
 const useStyles = makeStyles({
     root: {
@@ -14,6 +15,10 @@ const useStyles = makeStyles({
         display: 'block',
         marginTop: 150
     },
+    chartRow : {
+        display: "flex", 
+        marginTop: 10
+    }
 })
 
 function Statistics() {
@@ -24,9 +29,12 @@ function Statistics() {
             <div className={classes.wrapper}>
                 <Typography variant="h5" color="primary">Registered Users</Typography>
                 <Filters />
-                <div style={{display: "flex", marginTop: "10px",}}>
+                <div className={classes.chartRow}>
                     <Memberships/> 
                     <UsersPie/>
+                </div>
+                <div classeName={classes.chartRow}>
+                    <AllRatingsBar />
                 </div>
             </div>
         </div>
