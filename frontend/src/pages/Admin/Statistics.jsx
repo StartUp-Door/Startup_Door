@@ -4,24 +4,33 @@ import { Typography } from '@material-ui/core';
 import Filters from '../../components/admin/charts/Filters';
 import Memberships from '../../components/admin/charts/Memberships'
 import UsersPie from '../../components/admin/charts/UsersPie'
+import Drawer from './Drawer'
 
 const useStyles = makeStyles({
+    root: {
+        display: 'flex',
+    },
     wrapper : {
-        marginTop: 150,
+        display: 'block',
+        marginTop: 150
     },
 })
 
 function Statistics() {
     const classes = useStyles();
     return (
-        <div className={classes.wrapper}>
-            <Typography variant="h5" color="primary">Registered Users</Typography>
-            <Filters />
-            <div style={{display: "flex", marginTop: "10px",}}>
-                <Memberships/> 
-                <UsersPie/>
+        <div className={classes.root}>
+            <Drawer />
+            <div className={classes.wrapper}>
+                <Typography variant="h5" color="primary">Registered Users</Typography>
+                <Filters />
+                <div style={{display: "flex", marginTop: "10px",}}>
+                    <Memberships/> 
+                    <UsersPie/>
+                </div>
             </div>
         </div>
+        
     )
 }
 
