@@ -1,5 +1,5 @@
 import React from 'react'
-import { Typography, TextField, Button, Grid, InputAdornment,InputLabel, OutlinedInput, FormControl,  } from '@material-ui/core'
+import { Typography, TextField, Button, Grid, InputAdornment,InputLabel, OutlinedInput, FormControl } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import Statistics from './Statistics';
 
@@ -10,8 +10,16 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import IconButton from '@material-ui/core/IconButton';
 // import clsx from 'clsx'
+import Drawer from './Drawer'
 
 const useStyles = makeStyles({
+    root: {
+        display: 'flex',
+    },
+    content: {
+        display: 'block',
+        marginTop: 120
+    },
     textField: {
         margin: 50,
     }, 
@@ -35,10 +43,10 @@ const useStyles = makeStyles({
 function Settings() {
 const classes = useStyles();    
 
-const [selectedDate, setSelectedDate] = React.useState(new Date('1998-12-12'));
+const [selectedDate, setSelectedDate] = React.useState('');
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
+  const handleDateChange = (event) => {
+    setSelectedDate(event.target.value);
   };
 
   const [values, setValues] = React.useState({
@@ -52,6 +60,7 @@ const [selectedDate, setSelectedDate] = React.useState(new Date('1998-12-12'));
     rePassword : 'Darshana',
     showPassword: false,
     showRePassword: false,
+    birthday: '1998-12-12'
   })
 
   const handleChange = (prop) => (event) => {
@@ -74,107 +83,115 @@ const [selectedDate, setSelectedDate] = React.useState(new Date('1998-12-12'));
   }
 
     return (
-        <div style={{marginTop: 150}}>
-            <Typography variant="h4" color="primary" style={{marginBottom: "10px"}}>
-                Update your account
-            </Typography> 
-            <div class={classes.textField}>
-                <form action={<Statistics/>} method="post" class={classes.block}>
-                    <div className={classes.row}>
-                        <TextField id="userName" label="User Name" variant="outlined" value={values.userName}  disabled/>
-                        <TextField id="userId" label="User ID" variant="outlined" value={values.userId}  disabled/>
-                    </div>
+        <div className={classes.root}>
+            <Drawer />
+            <div className={classes.content}>
+                <Typography variant="h4" color="primary" style={{marginBottom: "10px"}}>
+                    Update your account
+                </Typography> 
+                <div class={classes.textField}>
+                    <form action={<Statistics/>} method="post" class={classes.block}>
+                        <div className={classes.row}>
+                            <TextField id="userName" label="User Name" variant="outlined" value={values.userName}  disabled/>
+                            <TextField id="userId" label="User ID" variant="outlined" value={values.userId}  disabled/>
+                        </div>
 
-                    <div className={classes.row}>
-                        <TextField id="firstName" label="First Name" variant="outlined" value={values.firstName} required/>
-                        <TextField id="lastName" label="Last Name" variant="outlined" value={values.lastName} required/>
+                        <div className={classes.row}>
+                            <TextField id="firstName" label="First Name" variant="outlined" value={values.firstName} required/>
+                            <TextField id="lastName" label="Last Name" variant="outlined" value={values.lastName} required/>
+                            
+                        </div>
+
+                        <div className={classes.row}>
+                            <TextField id="age" label="Age" variant="outlined" value={values.age} required/>
+                            <TextField id="email" label="Email" variant="outlined" value={values.email} labelWidth={130} required/>
+                        </div>
                         
-                    </div>
+                        <div className={classes.row}>
+                            <TextField id="birthday" label="Birthday" variant="outlined" value={values.birthday} labelWidth={130} required/>
+                        </div>
 
-                    <div className={classes.row}>
-                        <TextField id="age" label="Age" variant="outlined" value={values.age} required/>
-                        <TextField id="email" label="Email" variant="outlined" value={values.email} labelWidth={130} required/>
-                    </div>
-                    <div className={classes.row}>
-                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                            <Grid container justifyContent="space-around">
-                                <KeyboardDatePicker
-                                    variant="outlined"
-                                    margin="normal"
-                                    id="date-picker-dialog"
-                                    label="Birth Date"
-                                    format="dd/MM/yyyy"
-                                    value={selectedDate}
-                                    onChange={handleDateChange}
-                                    KeyboardButtonProps={{
-                                        'aria-label': 'change date',
-                                    }}
-                                    required
-                                />
-                            </Grid>
-                        </MuiPickersUtilsProvider>
-                    </div>
+                        {/* <div className={classes.row}>
+                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                <Grid container justifyContent="space-around">
+                                    <KeyboardDatePicker
+                                        variant="outlined"
+                                        margin="normal"
+                                        id="date-picker-dialog"
+                                        label="Birthday"
+                                        format="dd/MM/yyyy"
+                                        value={selectedDate}
+                                        onChange={handleDateChange}
+                                        KeyboardButtonProps={{
+                                            'aria-label': 'change date',
+                                        }}
+                                        required
+                                    />
+                                </Grid>
+                            </MuiPickersUtilsProvider>
+                        </div> */}
 
-                    <div className={classes.row}>
-                        <FormControl variant="outlined">
-                            <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-                                <OutlinedInput
-                                    id="password"
-                                    type={values.showPassword ? 'text' : 'password'}
-                                    value={values.password}
-                                    onChange={handleChange('password')}
-                                    endAdornment={
-                                    <InputAdornment position="end">
-                                        <IconButton
-                                        aria-label="toggle password visibility"
-                                        onClick={handleClickShowPassword}
-                                        onMouseDown={handleMouseDownPassword}
-                                        edge="end"
-                                        >
-                                        {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                                        </IconButton>
-                                    </InputAdornment>
-                                    }
-                                    labelWidth={70}
-                                    required
-                                />
-                        </FormControl>
+                        <div className={classes.row}>
+                            <FormControl variant="outlined">
+                                <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                                    <OutlinedInput
+                                        id="password"
+                                        type={values.showPassword ? 'text' : 'password'}
+                                        value={values.password}
+                                        onChange={handleChange('password')}
+                                        endAdornment={
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                            aria-label="toggle password visibility"
+                                            onClick={handleClickShowPassword}
+                                            onMouseDown={handleMouseDownPassword}
+                                            edge="end"
+                                            >
+                                            {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                                            </IconButton>
+                                        </InputAdornment>
+                                        }
+                                        labelWidth={70}
+                                        required
+                                    />
+                            </FormControl>
+                            
+                            <FormControl variant="outlined">
+                                <InputLabel htmlFor="outlined-adornment-password">Confirm Password</InputLabel>
+                                    <OutlinedInput
+                                        id="rePassword"
+                                        type={values.showRePassword ? 'text' : 'password'}
+                                        value={values.rePassword}
+                                        onChange={handleChange('rePassword')}
+                                        endAdornment={
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                            aria-label="toggle rePassword visibility"
+                                            onClick={handleClickShowRePassword}
+                                            onMouseDown={handleMouseDownRePassword}
+                                            edge="end"
+                                            >
+                                            {values.showRePassword ? <Visibility /> : <VisibilityOff />}
+                                            </IconButton>
+                                        </InputAdornment>
+                                        }
+                                        labelWidth={130}
+                                        required
+                                    />
+                            </FormControl>
                         
-                        <FormControl variant="outlined">
-                            <InputLabel htmlFor="outlined-adornment-password">Confirm Password</InputLabel>
-                                <OutlinedInput
-                                    id="rePassword"
-                                    type={values.showRePassword ? 'text' : 'password'}
-                                    value={values.rePassword}
-                                    onChange={handleChange('rePassword')}
-                                    endAdornment={
-                                    <InputAdornment position="end">
-                                        <IconButton
-                                        aria-label="toggle rePassword visibility"
-                                        onClick={handleClickShowRePassword}
-                                        onMouseDown={handleMouseDownRePassword}
-                                        edge="end"
-                                        >
-                                        {values.showRePassword ? <Visibility /> : <VisibilityOff />}
-                                        </IconButton>
-                                    </InputAdornment>
-                                    }
-                                    labelWidth={130}
-                                    required
-                                />
-                        </FormControl>
-                    
-                    </div>
+                        </div>
 
-                    <div className={classes.row}>
-                        <Button variant="contained" color="primary" onClick={console.log("Hello world")}>
-                            submit
-                        </Button>
-                        <Button variant="contained" color="secondary">
-                            reset
-                        </Button>
-                    </div>
-                </form>
+                        <div className={classes.row}>
+                            <Button variant="contained" color="primary" onClick={console.log("Hello world")}>
+                                submit
+                            </Button>
+                            <Button variant="contained" color="secondary">
+                                reset
+                            </Button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     )
