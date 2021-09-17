@@ -21,6 +21,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
+import Drawer from './Drawer'
+
 const columns = [
     { field: "id", headerName: "UID", width: 90 },
     {
@@ -108,6 +110,16 @@ const rows = [{
 },];
 
 const useStyles = makeStyles((theme) => ({
+    root: {
+        display: 'flex'
+    },
+    content: {
+        display: 'block',
+        marginTop: 120,
+        height: 600,
+        width: '100%',
+        marginRight: 50
+    },
     formControl: {
         margin: theme.spacing(1),
         minWidth: 200,
@@ -215,78 +227,84 @@ function ManageUsers() {
     }
     
     return (
-        <div style={{ height: 600, width: "100%", marginTop: 150, marginRight: 50 }}>
-            <DataGrid columns={columns}
-                rows={users ? users : rows}
-                pageSize={10}
-                // checkboxSelection
-                onRowDoubleClick={(params) => {
-                        getAllDetailsOfUser(params.row.id);
-                        handleClickOpen();
-                }}
-            />
-            <Dialog open={open} onClose={handleClose} aria-labelledby="Update-user-details">
-                <DialogTitle id="update-user-title">
-                    Details of the User : {data.username}
-                </DialogTitle>
-                <DialogContent>
-                    <TextField size="small" variant="outlined" label="User ID" value={data.id} disabled className={classes.textField} />
-                    <TextField size="small" variant="outlined" label="Username" value={data.username} disabled className={classes.textField} />
-                    <TextField size="small" variant="outlined" label="First Name" value={data.first_name} disabled className={classes.textField} />
-                    <TextField size="small" variant="outlined" label="Last Name" value={data.last_name} disabled className={classes.textField} />
-                    <TextField size="small" variant="outlined" label="Email" value={data.email} disabled className={classes.textField} />
-                    <TextField size="small" variant="outlined" label="Birthday" value={data.birthday} disabled className={classes.textField} />
+        <div className={classes.root}>
+            <Drawer />
+            <div className={classes.content}>
+                <DataGrid columns={columns}
+                    rows={users ? users : rows}
+                    pageSize={10}
+                    // checkboxSelection
+                    onRowDoubleClick={(params) => {
+                            getAllDetailsOfUser(params.row.id);
+                            handleClickOpen();
+                    }}
+                />
 
-                    {/* <TextField size="small" variant="outlined" label="User Role" value={data.service_type} disabled className={classes.textField} /> */}
+                {/* Dialog box for edit the details of user */}
+                
+                <Dialog open={open} onClose={handleClose} aria-labelledby="Update-user-details">
+                    <DialogTitle id="update-user-title">
+                        Details of the User : {data.username}
+                    </DialogTitle>
+                    <DialogContent>
+                        <TextField size="small" variant="outlined" label="User ID" value={data.id} disabled className={classes.textField} />
+                        <TextField size="small" variant="outlined" label="Username" value={data.username} disabled className={classes.textField} />
+                        <TextField size="small" variant="outlined" label="First Name" value={data.first_name} disabled className={classes.textField} />
+                        <TextField size="small" variant="outlined" label="Last Name" value={data.last_name} disabled className={classes.textField} />
+                        <TextField size="small" variant="outlined" label="Email" value={data.email} disabled className={classes.textField} />
+                        <TextField size="small" variant="outlined" label="Birthday" value={data.birthday} disabled className={classes.textField} />
 
-                    <div className={classes.textField}>
-                        <FormControl className={classes.formControl}>
-                            <InputLabel id="category">Category</InputLabel>
+                        {/* <TextField size="small" variant="outlined" label="User Role" value={data.service_type} disabled className={classes.textField} /> */}
 
-                            <Select
-                                className={classes.textField}
-                                labelId="Category"
-                                id="category"
-                                value={serviceId}
-                                onChange={handleCategoryChange}
-                            >
+                        <div className={classes.textField}>
+                            <FormControl className={classes.formControl}>
+                                <InputLabel id="category">Category</InputLabel>
 
-                                {service.map((element) => (
-                                    <MenuItem value={element.service_id}>{element.service_type}</MenuItem>
-                                ))}
-                            </Select>
-                        </FormControl>
+                                <Select
+                                    className={classes.textField}
+                                    labelId="Category"
+                                    id="category"
+                                    value={serviceId}
+                                    onChange={handleCategoryChange}
+                                >
 
-                        <FormControl className={classes.formControl}>
-                            <InputLabel id="status">Status</InputLabel>
-                            <Select
-                                className={classes.textField}
-                                labelId="status"
-                                id="status-id"
-                                value={data.status}
-                                onChange={handleStatusChange}
-                            >
-                                <MenuItem value={state}>{state ? "True" : "False"}</MenuItem>
-                                <MenuItem value={state ? false : true}>{state ? "False" : "True"}</MenuItem>
-                            </Select>
-                        </FormControl>
-                    </div>
+                                    {service.map((element) => (
+                                        <MenuItem value={element.service_id}>{element.service_type}</MenuItem>
+                                    ))}
+                                </Select>
+                            </FormControl>
 
-                    <DialogContent variant="h3">
-                        Address
+                            <FormControl className={classes.formControl}>
+                                <InputLabel id="status">Status</InputLabel>
+                                <Select
+                                    className={classes.textField}
+                                    labelId="status"
+                                    id="status-id"
+                                    value={data.status}
+                                    onChange={handleStatusChange}
+                                >
+                                    <MenuItem value={state}>{state ? "True" : "False"}</MenuItem>
+                                    <MenuItem value={state ? false : true}>{state ? "False" : "True"}</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </div>
+
+                        <DialogContent variant="h3">
+                            Address
+                        </DialogContent>
+                        <TextField size="small" variant="outlined" label="Street" value={data.street} disabled className={classes.textField} />
+                        <TextField size="small" variant="outlined" label="City" value={data.city} disabled className={classes.textField} />
                     </DialogContent>
-                    <TextField size="small" variant="outlined" label="Street" value={data.street} disabled className={classes.textField} />
-                    <TextField size="small" variant="outlined" label="City" value={data.city} disabled className={classes.textField} />
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose} color="primary">
-                        Cancel
-                    </Button>
-                    <Button onClick={() => { updateUserDetails(data.id) }} color="primary">
-                        Update Details
-                    </Button>
-                </DialogActions>
-            </Dialog>
+                    <DialogActions>
+                        <Button onClick={handleClose} color="primary">
+                            Cancel
+                        </Button>
+                        <Button onClick={() => { updateUserDetails(data.id) }} color="primary">
+                            Update Details
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            </div>
         </div>
     );
 }
