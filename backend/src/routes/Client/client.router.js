@@ -14,6 +14,10 @@ router.put('/requestPlantDonotPut/:id', Controller.requestPlantPutNot);
 router.put('/requestFoodPut/:id', Controller.requestFoodPut);
 router.put('/requestFoodDonotPut/:id', Controller.requestFoodPutNot);
 
+router.delete('/deleteTechRequest/:id', Controller.deleteTechRequest);
+router.delete('/deleteFoodRequest/:id', Controller.deleteFoodRequest);
+router.delete('/deletePlantRequest/:id', Controller.deletePlantRequest);
+
 router.post('/givejob/:id', Controller.givejob);
 
 router.get('/getClient', Controller.listClients);
@@ -22,6 +26,8 @@ router.get('/clientProfile/:id', Controller.profile);
 
 router.get('/clientNotification/:id', Controller.noti);
 router.get('/service/notify/:id', Controller.notify);
+
+router.get('/NotificationTech/:id', Controller.notifromTech); //need to add client id
 
 router.put('/update/profile/:id', Controller.updateClientProfile);
 
