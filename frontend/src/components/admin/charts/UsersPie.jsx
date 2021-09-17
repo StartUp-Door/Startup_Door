@@ -1,7 +1,22 @@
 import { Paper, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
+import { makeStyles } from "@material-ui/core";
 
+const useStyles = makeStyles(({
+  root : {
+    margin: 10
+  },
+  heading: {
+      marginBottom: 20,
+      textAlign: 'center',
+      paddingTop: 20
+  },
+  chartWrapper: {
+      paddingRight: 30,
+      justifyContent: 'space-evenly'
+  }
+}))
 const COLORS = ["#00688B", "#0BB5FF	", "#507786", "	#0099CC", "#8DB6CD", "#6CA6CD"];
 
 const RADIAN = Math.PI / 180;
@@ -24,7 +39,7 @@ const renderCustomizedLabel = ({cx, cy, midAngle, innerRadius, outerRadius, perc
 };
 
 export default function UsersPie() {
-
+  const classes = useStyles();
   const [providers, setProviders] = useState([])
   
   useEffect(() => {
@@ -39,28 +54,29 @@ export default function UsersPie() {
   // console.log(providers);
 
   return (
-    <Paper style={{marginRight: 20}} >
-      <Typography variant="h5">
+    <Paper className={classes.root} >
+      <Typography variant="h6" className={classes.heading}>
         Service Providers
       </Typography>
-      <PieChart width={400} height={400}>
-        <Pie
-          data={providers}
-          cx={200}
-          cy={200}
-          labelLine={false}
-          label={renderCustomizedLabel}
-          outerRadius={100}
-          fill="#8884d8"
-          dataKey="value"
-        >
-          {providers.map((element, index) => (
-            <Cell key={element.name} fill={COLORS[index % COLORS.length]}/>
-          ))}
-        </Pie>
-        <Tooltip/>
-        <Legend/>
-      </PieChart>
+      <div className={classes.chartWrapper} >
+        <PieChart width={300} height={300}>
+          <Pie
+            data={providers}
+            cx={160}
+            cy={100}
+            labelLine={false}
+            label={renderCustomizedLabel}
+            outerRadius={100}
+            fill="#8884d8"
+            dataKey="value"
+          >
+            {providers.map((element, index) => (
+              <Cell key={element.name} fill={COLORS[index % COLORS.length]}/>
+            ))}
+          </Pie>
+          <Legend/>
+        </PieChart>
+      </div>
     </Paper>
   );
 }
