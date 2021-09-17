@@ -141,3 +141,35 @@ exports.Confirm = async (req, res) => {
 
     
   };
+exports.Forgotpassword = async (req, res) => {
+    try {
+        //  return res.status(200).send("Email not in system")
+          const {email} = req.body;
+          const user = await pool.query("SELECT * FROM users where email = $1",[email]);
+        
+          if(user.rows.length !== 0){
+            const  username=user.rows[0].username;
+            const  email=user.rows[0].email;
+            const  token=user.rows[0].token;
+          //  return res.status(200).send(email);
+          //   console.log(username);
+       const send =   nodemalier.sendResetEmail(
+                   username,
+                   email,
+                   token
+             )
+             
+             return res.json('sucess');
+             
+           
+          }else{
+                
+              return res.status(401).json("Email not in system")
+          }j
+  
+      } catch (err) {
+          console.error(err.message);
+      }
+
+    
+  };
