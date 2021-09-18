@@ -32,10 +32,27 @@ exports.listPosts = async (req, res) => {
   res.status(200).send(response.rows);
 };
 
-exports.ongoing = async (req, res) => {
+exports.ongoingID = async (req, res) => {
   const cid = parseInt(req.params.id);
   try {
-   const results = await db.query("select * from job_plant inner join plant on job_plant.pid= plant.pid where cid=$1 ORDER BY jobplant_id DESC", [cid]);
+   const results = await db.query("select * from job_plant inner join client on job_plant.service_client_id= client.cid where cid=$1 ORDER BY jobplant_id DESC", [cid]);
+ 
+    res.status(200).json({
+       status: "Success",
+       data: {
+           problems:results.rows,
+       },       
+     });
+    } 
+    catch (err) {
+      console.error(err.message);
+    }
+};
+
+exports.ongoing = async (req, res) => {
+  // const cid = parseInt(req.params.id);
+  try {
+   const results = await db.query("select * from job_plant inner join client on job_plant.service_client_id= client.cid where username='Tharaka Athukorala' ORDER BY jobplant_id DESC");
  
     res.status(200).json({
        status: "Success",

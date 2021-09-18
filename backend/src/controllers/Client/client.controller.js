@@ -111,6 +111,15 @@ exports.noti = async (req, res) => {
   res.status(200).send(response.rows);
 };
 
+exports.notifromTech = async (req, res) => {
+  const cid = parseInt(req.params.id);
+  const response = await db.query(
+    "select * from job_tech inner join client on job_tech.service_client_id= client.cid where status='Accepted' AND cid=$1 ORDER BY jobtech_id DESC",
+    [cid]
+  );
+  res.status(200).send(response.rows);
+};
+
 exports.notify = async (req, res) => {
   const cid = parseInt(req.params.id);
   const response = await db.query(
@@ -187,4 +196,35 @@ exports.requestFoodPutNot = async (req, res) => {
   );
 
   res.status(200).send({ message: "Declined the requested job!" });
+};
+
+exports.deleteTechRequest = async (req, res) => {
+  const b_id = parseInt(req.params.id);
+  try {
+   const results = await db.query("DELETE FROM job_tech WHERE jobtech_id = $1", [b_id]);
+   res.status(200).send(results.rows); 
+  } 
+    catch (err) {
+      console.error(err.message);
+    }
+};
+exports.deleteFoodRequest = async (req, res) => {
+  const b_id = parseInt(req.params.id);
+  try {
+   const results = await db.query("DELETE FROM job_food WHERE jobfood_id = $1", [b_id]);
+   res.status(200).send(results.rows); 
+  } 
+    catch (err) {
+      console.error(err.message);
+    }
+};
+exports.deletePlantRequest = async (req, res) => {
+  const b_id = parseInt(req.params.id);
+  try {
+   const results = await db.query("DELETE FROM job_plant WHERE jobplant_id = $1", [b_id]);
+   res.status(200).send(results.rows); 
+  } 
+    catch (err) {
+      console.error(err.message);
+    }
 };

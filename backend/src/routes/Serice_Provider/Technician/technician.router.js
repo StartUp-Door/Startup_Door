@@ -11,7 +11,8 @@ router.get('/technician', Controller.listTech);
 router.get('/technician/posts', Controller.listPosts);
 router.get('/technician/:id', Controller.listTechID);   
 router.get('/technician/rightbar/:id', Controller.right);   
-router.get('/technician/ongoing/:id', Controller.ongoing);   
+router.get('/technician/ongoing/:id', Controller.ongoingID);   
+router.get('/technician123/ongoing123', Controller.ongoing);   
 
 router.put('/technician/:id', Controller.updateTechJob);
 

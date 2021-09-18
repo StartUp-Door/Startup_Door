@@ -33,6 +33,16 @@ import OngoingTech from './pages/Technician/Ongoing'
 import OngoingPlant from './pages/Plant/Ongoing'  
 import OngoingFood from './pages/Food/Ongoing' 
 
+// admin pages 
+import Statistics from "./pages/Admin/Statistics";
+import AdminHome from "./pages/Admin/AdminHome";
+import Settings from "./pages/Admin/Settings";
+import ReviewServices from "./pages/Admin/ReviewServices";
+import ServiceTypes from "./pages/Admin/ServiceTypes";
+// import Drawer from './pages/Drawer';
+import ManageUsers from "./pages/Admin/ManageUsers";
+import Approvals from './pages/Admin/Approvals'
+
 function App() {
   return (
     <Fragment>
@@ -126,6 +136,31 @@ function App() {
           </Route>
           <Route path="/ongoingFood">
             <OngoingFood />
+          </Route>
+
+          {/* Admin routes */}
+          <Route path = "/admin">
+              <AdminHome />    
+          </Route>  
+          <Route path = "/stats" >
+              <Statistics />
+          </Route>  
+          <Route path="/message">
+          </Route>
+          <Route path = "/settings" >
+              <Settings />
+          </Route>  
+          <Route path = "/reviewServices" >
+              <ReviewServices />
+          </Route>  
+          <Route path="/serviceTypes">
+              <ServiceTypes/>
+          </Route>
+          <Route path="/manageUsers">
+              <ManageUsers/>
+          </Route>
+          <Route path="/techApprovals">
+              <Approvals/>
           </Route>
 
         </Switch>
