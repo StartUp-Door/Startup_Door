@@ -4,6 +4,7 @@ import { BottomNavigation } from '@progress/kendo-react-layout';
 import { useHistory } from 'react-router';
 import { withRouter } from 'react-router-dom';
 
+//This pane emphasize the report generation techniques
 function NavigationContainer(props) {
   const history = useHistory();
 
