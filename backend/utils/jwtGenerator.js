@@ -10,5 +10,5 @@ function jwtGenerator(password){
      return jwt.sign(payload,process.env.jwtSecret,{expiresIn:"1hr"});
 }
 
-
+//link genertion is done in here
 module.exports = jwtGenerator;
