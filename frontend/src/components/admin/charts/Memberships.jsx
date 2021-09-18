@@ -1,8 +1,25 @@
 import { Paper, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
-import { BarChart, CartesianGrid, XAxis, YAxis, Bar, Tooltip } from "recharts";
+import { BarChart, CartesianGrid, XAxis, YAxis, Bar } from "recharts";
+import { makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles(({
+  root : {
+    margin: 10
+  },
+  heading: {
+      marginBottom: 20,
+      textAlign: 'center',
+      paddingTop: 20
+  },
+  chartWrapper: {
+      paddingRight: 30,
+      justifyContent: 'space-evenly'
+  }
+}))
 
 export default function App() {
+    const classes = useStyles();
     const [members, setMembers] = useState([])
 
     useEffect(() => {
@@ -16,17 +33,18 @@ export default function App() {
         },[])
         
   return (
-      <Paper>
-          <Typography variant="h5" style={{marginBottom: 20}}> 
+      <Paper className={classes.root}>
+          <Typography variant="h6" className={classes.heading}> 
             Memberships
           </Typography>
-        <BarChart width={500} height={400} data={members}>
-            <CartesianGrid strokeDasharray="2 3" />
+          <div className={classes.chartWrapper} >
+            <BarChart width={300} height={300} data={members}>
+                <CartesianGrid strokeDasharray="2 3" />
                 <XAxis dataKey="name"/>
                 <YAxis/>
                 <Bar dataKey="value" fill="#009ACD" />
-            <Tooltip/>
             </BarChart>
+          </div>
       </Paper>
   );
 }

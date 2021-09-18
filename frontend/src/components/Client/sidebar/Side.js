@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import TreeView from '@material-ui/lab/TreeView';
@@ -121,7 +121,35 @@ const useStyles = makeStyles({
 
 export default function GmailTreeView() { 
   const classes = useStyles();
+ const [tech,setTech] = useState('')
+  const [plant,setPlant] = useState('')
+  const [food,setFood] = useState('')
+  const id1 = localStorage.cid
+  useEffect(()=>{
+    fetch(`http://localhost:4000/plan/route/${id1}`)
+    .then(res => {
+      return res.json();
+    })
+    .then(data => {
+    //  {technician,plant,0}
+       if(data[0].category[0] === 'technician'){
+        setTech(`/${data[0].category[0]}`)
+       }else{
+         setTech('/test')
+       }
+       if(data[0].category[1] === 'plant'){
+        setPlant(`/${data[0].category[1]}`)
+       }else{
+         setPlant('/test')
+       }
 
+       if(data[0].category[2] === 'food'){
+        setFood(`/${data[0].category[2]}`)
+       }else{
+        setFood('/test')
+       }      
+    })
+  },[])
   return (
     <TreeView
       className={classes.root}
@@ -131,7 +159,7 @@ export default function GmailTreeView() {
       defaultEndIcon={<div style={{ width: 24 }} />}
     >
       <StyledTreeItem nodeId="1" labelText="Client function 1" labelIcon={WorkRoundedIcon}>
-      <Link to="/technician" style={{textDecoration:'none'}}><StyledTreeItem
+      <Link to={`${tech}`} style={{textDecoration:'none'}}><StyledTreeItem
           nodeId="7"
           labelText="Technician"
           labelIcon={SupervisorAccountIcon}
@@ -139,7 +167,7 @@ export default function GmailTreeView() {
           color="#1a73e8"
           bgColor="#e8f0fe"
         /> </Link>
-        <Link to="/food" style={{textDecoration:'none'}}><StyledTreeItem
+        <Link to={`${food}`} style={{textDecoration:'none'}}><StyledTreeItem
           nodeId="8"
           labelText="Food & Cuisine"
           labelIcon={FastfoodIcon}
@@ -147,7 +175,7 @@ export default function GmailTreeView() {
           color="#e3742f"
           bgColor="#fcefe3"
         /></Link>
-        <Link to="/plant" style={{textDecoration:'none'}}><StyledTreeItem
+        <Link  to={`${plant}`} style={{textDecoration:'none'}}><StyledTreeItem
           nodeId="9"
           labelText="Plants and Crops"
           labelIcon={NaturePeopleIcon}

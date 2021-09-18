@@ -6,6 +6,7 @@ import UsersPie from '../../components/admin/charts/UsersPie'
 // import BarChart from '../components/analytics/Barchart'
 import Memberships from '../../components/admin/charts/Memberships'
 import Drawer from './Drawer'
+import AllRatingsBar from '../../components/admin/charts/AllRatingsBar';
 
 const useStyles = makeStyles(({
     root: { 
@@ -31,11 +32,10 @@ function AdminHome() {
             <Drawer />
             <div className={classes.content}>
                 <Infocard />
-                {/* <SalesAnalytics /> */}
                 <div className={classes.charts}>
                     <UsersPie />
-                    {/* <BarChart/> */}
                     <Memberships />
+                    <AllRatingsBar/>
                 </div>
             </div>
         </div>
