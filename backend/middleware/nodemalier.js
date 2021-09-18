@@ -17,8 +17,18 @@ module.exports.sendConfirmationEmail = (username, email, token) => {
         to:email,
         html:`<h1>Email Confirm your account</h1>
         <p>Please confirm your email by clicking by on the following link</p>
-        <a href=http://localhost:8081/auth/confirm/${token}>Click here</a>`
+        <a href=http://localhost:8080/auth/confirm/${token}>Click here</a>`
    }).catch(err=>console.log(err));
 
 
+}
+
+module.exports.sendResetEmail = (username,email,token) =>{
+    transport.sendMail({
+        from:user,
+        to:email,
+        html:`<h1>Reset your account</h1>
+           <p>Please Reset your account click following link</p>
+           <a href=http://localhost:3000/reset/${token}>Click here</a>                                `
+    }).catch(err=>console.log(err));
 }
