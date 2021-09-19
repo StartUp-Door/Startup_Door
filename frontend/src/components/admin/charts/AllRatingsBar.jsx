@@ -30,7 +30,7 @@ export default function AllRatingsBar() {
             setRatings(arry => [...arry,{rate: e.rate.toString(), value: parseInt(e.count)}])
             )))
     }, [])
-        console.log(ratings)
+
   return (
         <Paper className={classes.root}>
             <Typography variant="h6" className={classes.heading}> 
