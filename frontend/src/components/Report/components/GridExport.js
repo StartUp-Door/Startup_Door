@@ -23,7 +23,7 @@ function GridExport() {
 
   // Take our JSON data and transform it to a format that easily binds to the Grid, using our skip and take variables
   const processedData = process(gridSampleProducts, dataState);
-
+//Calling the Function for retrieve data
   useEffect(
     () => {
       if(!processedData.data.length) {
