@@ -10,10 +10,10 @@ const useStyles = makeStyles({
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-around",
-        alignItems: "top",
+        alignItems: "flex-start",
         marginLeft: "0",
-        marginTop: "20px",
-        width: "1200px",
+        marginTop: 10,
+        width: 1200,
         height: "fit-content",
     }, 
     linkText: {
@@ -56,7 +56,7 @@ export default function Infocard() {
 
         const getNegativeRatings  = async() => {
             try {
-                const negativeRatingCount = await fetch("http://localhost:5000/ratings");
+                const negativeRatingCount = await fetch("http://localhost:5000/ratings/negativeCount");
                 const count = await negativeRatingCount.json();
                 const [result] = count;
                 setNagativeRatings(result)
@@ -65,30 +65,61 @@ export default function Infocard() {
                 console.error(error.message);
             }
         }
+        
+        const [categories, setCategories] = useState({});
+        const getCategories = async() => {
+            try {
+                const response = await fetch("http://localhost:5000/categoryCount");
+                const [count] = await response.json()
+                setCategories(count)
+
+            } catch (error) {
+                console.error(error.message);
+            }
+        }
+
+        const [bidCount, setBidCount] = useState({})
+        const getBidsCount = () => {
+            try {
+                fetch("http://localhost:5000/bidCount")
+                .then(data => {
+                    return data.json()
+                }).then( data => setBidCount(data[0]))
+                .catch(error => console.log(error))
+            } catch (error) {
+                console.error(error.message)
+            }
+        }
 
         useEffect( () => {
+            getBidsCount();
             getAllServiceProviders();
             getAllClients();
             getNegativeRatings();
-        })
+            getCategories();
+        }, [])
 
     return (
         <Container className={classes.flexBox}>
             <Link to="/manageUsers" className={classes.linkText} >
-                <CardContainer value={countProvider.users} description="Total number of Service providers registered in the system." />
+                <CardContainer value={countProvider.users} description="No. of service providers" />
             </Link>
             <Link to="/manageUsers" className={classes.linkText}>
-                <CardContainer value={countClients.users} description="Total Clients registered in the system." />
+                <CardContainer value={countClients.users} description="No. of Registered clients" />
             </Link>
             
             <Link to="/reviewServices" className={classes.linkText}>
-                <CardContainer value={countNegativeRatings.count} description="Low rated reviews on among all services" />
+                <CardContainer value={countNegativeRatings.count} description="No. of Low Rated Reviews" />
             </Link>
             
-            <Link to="stats" className={classes.linkText}>
-                <CardContainer value="Rs.XXXX" description="Total money tranferred through the system." />
+            <Link to="/stats" className={classes.linkText}>
+                <CardContainer value={categories.count} description="No. of Service Categories" />
             </Link>
-            
+
+            <Link to="/stats" className={classes.linkText}>
+                <CardContainer value={bidCount.count} description="No. of Bids in active" />
+            </Link>
+
         </Container>
     )
 }
