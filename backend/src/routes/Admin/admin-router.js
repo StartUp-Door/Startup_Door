@@ -2,6 +2,8 @@ const router = require('express-promise-router')();
 import { stats, ratings, typeCountRatings, categoryCount, bidCount } from '../../controllers/Admin/admin-stats-controller';
 import { serviceTypes, getServiceTypes, getServiceType, updateServiceType, deleteServiceType, getServiceId } from '../../controllers/Admin/admin-service-controller'
 import { getAllUsers, getAUser, updateUser } from '../../controllers/Admin/admin-user-controller'
+import { allReviews } from '../../controllers/Admin/admin-review-controller'
+import { allRequests, updateRequest, deleteRequest } from '../../controllers/Admin/admin-portfolio-controller'
 
 // stats page
 router.get("/stats/users/:type", stats)
@@ -22,3 +24,11 @@ router.get("/servicetypes/id/:type", getServiceId)
 router.get("/users", getAllUsers)
 router.get("/users/:userID", getAUser)
 router.put("/users/:userID", updateUser)
+
+// reviews
+router.get("/ratings", allReviews);
+
+//portfolio
+router.get("/portfolio", allRequests);
+router.put("/portfolio/:pID", updateRequest)
+router.delete("/portfolio/:id", deleteRequest)
