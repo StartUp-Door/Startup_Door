@@ -6,7 +6,7 @@ import Slide from 'react-reveal/Reveal';
 const Chefs = ({ id }) => {
 	return (
 		<div className="chefContainer" id={id}>
-			<h1 className="cakeHeading">Our Kitchen Chefs</h1>
+			<h1 className="cakeHeading">Our Development Team</h1>
 			<div className="cakeWrapper">
 				{chefs.map((chef, index) => (
 					<Slide
